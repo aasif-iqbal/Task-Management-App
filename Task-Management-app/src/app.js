@@ -7,6 +7,11 @@ app.use(express.json());
 require('dotenv').config();
 console.log('my Port no:', process.env.DEV_PORT)
 
+
+// Router
+// const taskRouter = require('./routes/task.routes');
+// const userRouter = require('./routes/user.routes');
+
 // Database connection
 const connectDB = async () => {
     try {
@@ -18,7 +23,6 @@ const connectDB = async () => {
     }
   }
   connectDB();
-
 
 app.listen(process.env.DEV_PORT, () => {
     console.log(`Server is running on port ${process.env.DEV_PORT}`);

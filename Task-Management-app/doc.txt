@@ -2,6 +2,7 @@ npm init
 
 npm i dotenv
 npm i nodemon
+
 Add below to package.json
 "scripts": {
     "start":"nodemon app.js",
@@ -10,3 +11,17 @@ Add below to package.json
 
 npm i express
 npm i mongoose
+npm i bcryptjs
+npm i jsonwebtoken
+npm i validator
+npm i mongodb
+npm i mongodb-legacy
+
+npm i multer
+npm i sharp
+
+npm i nodemailer
+npm i mailgen
+npm i cors
+
+npm i express-validator

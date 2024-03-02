@@ -1,7 +1,8 @@
-const userModel = require("../model/user");
+const userModel = require("../models/user.model");
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
-const sharp = require('sharp'); // for multer, to shape or customise-image
+    // const sharp = require('sharp'); 
+// for multer, to shape or customise-image
 const { Error } = require("mongoose");
 
 // @ http://localhost:3000/registration

@@ -29,7 +29,7 @@ router.get('/', function(req, res){
     res.send(`Welcome to my app..`);
 })
 
-router.post('/registration', userController.registration);
+router.post('/user/registration', userController.registration);
 // Read user
 
 // router.get('/users/:id', auth, userController.readUser);

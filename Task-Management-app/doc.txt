@@ -4,6 +4,7 @@ npm i dotenv
 npm i nodemon
 
 Add below to package.json
+
 "scripts": {
     "start":"nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,5 +24,5 @@ npm i sharp
 npm i nodemailer
 npm i mailgen
 npm i cors
-
+  
 npm i express-validator

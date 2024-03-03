@@ -1,11 +1,11 @@
 const userModel = require("../models/user.model");
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
-    // const sharp = require('sharp'); 
+// const sharp = require('sharp'); 
 // for multer, to shape or customise-image
 const { Error } = require("mongoose");
 
-// @ http://localhost:3000/registration
+// @ http://localhost:3000/user/registration
 // @ author: asif
 // @ similer package for validation: https://joi.dev/api/
 
@@ -46,7 +46,7 @@ exports.registration = [
                 type : req.body.type
             })
             
-            //console.log(user_data);
+            console.log(user_data);
           
               if(!errors.isEmpty()){
                     console.log(errors);

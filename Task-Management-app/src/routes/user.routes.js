@@ -34,16 +34,17 @@ router.post('/user/registration', userController.registration);
 
 // router.get('/users/:id', auth, userController.readUser);
 router.get('/users/me', auth, userController.readUser);
-router.get('/checkPassword', userController.checkPassword);
-// Update user - using put we update specific field.
 
+// router.get('/users/me/checkPassword', userController.checkPassword);
+
+// Update user - using put we update specific field.
 //router.put('/updateUser/:id', userController.updateUserInfo);
-router.put('/updateUser/me', auth, userController.updateUserInfo);
+router.put('/user/updateProfile/me', auth, userController.updateUserInfo);
 
 router.post('/user/login', userController.login); // when user login. auth-token is created with expire:10hrs
 
 //delete user - profile delete
-router.delete('/users/deleteProfile/me', auth, userController.deleteUser);
+router.delete('/user/deleteProfile/me', auth, userController.deleteUser);
 
 router.post('/user/logout', auth, userController.logout);
 router.post('/user/logoutAll', auth, userController.logoutAll);
@@ -60,3 +61,5 @@ Key - upload [type:file] | value: select File
 router.post('/user/image', upload.single('upload'), userController.uploadImage);
 
 module.exports = router;
+
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWU3NDU3N2I1NWQwYzRjZWEyMDUwNzAiLCJpYXQiOjE3MDk2NTU0MTUsImV4cCI6MTcwOTkxNDYxNX0.IJcA4cV8MUFeMlivC1JphdliTFnrKjFhLpEkRvuAAhE

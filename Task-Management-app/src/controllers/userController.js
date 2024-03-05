@@ -111,15 +111,15 @@ type of request:-
 exports.checkPassword =  async (req, res) => {
    
     try{
-        const password = '12345';
-        const id = '65cb61c1cf2d9636bae7823e';
-        //console.log('req:', req.query.password);
-
+        // const password = '12345';
+        // const id = '65cb61c1cf2d9636bae7823e';
+        console.log('req:', req.query.password);
+        // console.log(req.token);
         const userInfo = await userModel.findById(id);
             
-        // bcrypt.compare(req.query.password, userInfo.password)
+        bcrypt.compare(req.query.password, userInfo.password)
 
-        const result = await bcrypt.compare(password, userInfo.password);
+        const result = await bcrypt.compare(req.query.password, userInfo.password);
         //console.log(result);
 
         if(result){
@@ -175,8 +175,7 @@ exports.updateUserInfo = [
         }catch(err){
             console.log(err);
             res.status(400).send(err);  
-        }
-        
+        }        
     }
 ];
 
@@ -265,7 +264,7 @@ exports.logoutAll = [
             user.tokens = [];
             await user.save();
 
-            res.status(200).send('Logut from all devices');
+            res.status(200).send('Logout from all devices');
         }catch(error){
             res.status(500).send(err,'error');
         }
@@ -274,12 +273,14 @@ exports.logoutAll = [
 
 exports.deleteUser = [
     
+    // Validation
+
     async(req, res) => {            
         try{
              const user = req.user;
              console.log('user',user);
              if(user){
-                const deletedUser = await User.findOneAndDelete(user._id);
+                const deletedUser = await userModel.findOneAndDelete(user._id);
                 // await req.user.remove();
                 if (!deletedUser) {
                     return res.status(404).json({ error: 'User not found' });

@@ -56,7 +56,7 @@ exports.registration = [
                 const userSaved = await user_data.save();   
                 const token = await user_data.generateAuthToken();                
                 
-                res.status(200).json({ userSaved, token });
+                res.status(201).json({ userSaved, token });
               }
     
         }catch(err){

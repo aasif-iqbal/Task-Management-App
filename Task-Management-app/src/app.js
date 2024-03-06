@@ -9,10 +9,11 @@ console.log('my Port no:', process.env.DEV_PORT)
 
 
 // Router
-// const taskRouter = require('./routes/task.routes');
 const userRouter = require('./routes/user.routes');
+const taskRouter = require('./routes/task.routes');
+
 app.use(userRouter);
-// app.use(taskRouter);
+app.use(taskRouter);
 
 // Database connection
 const connectDB = async () => {

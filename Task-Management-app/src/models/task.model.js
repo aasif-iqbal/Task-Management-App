@@ -35,7 +35,7 @@ In future, One User will only get 2 Tasks
 taskSchema.pre('validate', async function (next) {
     try {
       const users = await User.find({}, '_id');
-      // console.log(users);
+      console.log(users,'userlist will shows dropdown so that admin will select user and assign task to them');
       this.schema.path('assignedUser').enum = users.map(user => user._id);
       next();
     } catch (error) {

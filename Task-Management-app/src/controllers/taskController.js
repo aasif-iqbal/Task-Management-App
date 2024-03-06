@@ -62,15 +62,12 @@ Note: Admin Tasklist will [] empty becouse Admin dont have assigned id. it has o
 exports.show = [
     //validation
     async (req, res) => {
-        try{
-            console.log(req.user._id);
-          
+        try{          
             const taskList = await taskModel.find({ assignedUser:req.user._id }).populate('assignedUser');
             
             //For New User, and Admin
             if(!taskList.length){
                 return res.status(200).send({Msg: 'No Task Has been Assigned to this User'});    
-                
             }
             
             return res.status(200).send({tasks:taskList});
@@ -81,50 +78,51 @@ exports.show = [
     }
 ]
 
+/*
+    URI: http://localhost:3000/task/add
+*/
 exports.add = [
     // validation
-
-    async (req, res) => {
-        
-    try{    
-        const taskList = await taskModel.find({ assignedUser:req.user._id }).populate('assignedUser');
     
-            // When task is created First time.
-            if(taskList.length == 0){
-                const task = new taskModel({
-                    ...req.body,
-                    owner: req.user._id
-                })
-                await task.save(); 
-                res.status(201).json({'status': task});
-            }
+    async (req, res) => {            
         
-            if(taskList.length > 0){
-                let assignedUser = taskList[0].assignedUser._id;
-                
-                // Check the number of tasks assigned to the user
-                const userTaskCount = await taskModel.countDocuments({ assignedUser });
+        try{                
+            // check user type. only admin will add Task and assign task to user.
+           //  const taskList = await taskModel.find({ owner:req.user._id }).populate('owner');
             
-                // User can have only 2 Task.
-                // if (userTaskCount >= 2) {
-                //     return res.status(400).json({ error: 'User can have only two tasks.' });
-                // }
+            let loginUser = req.user.type.toLowerCase();
             
-                const task = new taskModel({
-                    ...req.body,
-                    owner: req.user._id
-                })
-                
-                await task.save(); 
-                res.status(201).json({'status': task});
-            }
+            console.log('loginUser', loginUser);
+          
+            if(loginUser === 'admin'){
+                console.log("welcome admin");
+                  // Check total number of task that have assigned user.            
+                  let assignedUser = req.body.assignedUser;
+               
+                  const taskList = await taskModel.find({ assignedUser:assignedUser }).populate('assignedUser');
+                         
+                  if(taskList.length <= 2){
+                    // New Task
+                    const task = new taskModel({
+                          ...req.body,
+                          owner: req.user._id
+                    });
+                    await task.save(); 
+                    return res.status(201).json({'status': task});
+                  }
 
+                  if(taskList.length >= 2){
+                    return res.status(400).json({ error: 'User can have only two tasks.' });
+                }                
+            }else{           
+                return res.status(401).json({'msg':'Unauthorized User Type'});
+            }                
         }catch(err){
-            console.log(err);
-            res.status(500).send(err);
-        }
+                console.log(err);
+                res.status(500).send(err);
+            }
     }
-]
+];
 
 /*
 
@@ -148,7 +146,7 @@ exports.update = [
     // validation
 
     // owner:65dc37876393dc8af1942328
-    async (req, res) =>{
+    async (req, res) => {
         
         const updates = Object.keys(req.body);
         const allowedType = ['description','completed'];
@@ -170,7 +168,6 @@ exports.update = [
                 return res.status(404).send({'msg':'No Task has been assign to this User'});    
             }
 
-            
             // Only assigned user will update task (what if other-user knows taskID)
             if(JSON.stringify(fetchTaskByTaskId.assignedUser) === JSON.stringify(req.user._id)){
               
@@ -209,10 +206,11 @@ exports.delete = [
             if(JSON.stringify(fetchTaskByTaskId.assignedUser) === JSON.stringify(req.user._id)){
                 
                 await taskModel.findOneAndDelete({ _id: req.params.task_id})
+                return res.send({'msg':'Task Deleted'});
+            }else{
+                return res.status(401).send({'msg':'Not Allowed - UnAutherised User'});
             }
-    
-            return res.send({'msg':'Task Deleted'});
-
+                
         } catch (e) {
             return res.status(500).send(e)
         }

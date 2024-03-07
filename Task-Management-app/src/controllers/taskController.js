@@ -32,8 +32,8 @@ exports.tasks = [
                         path:'tasks',
                         match,
                         options:{
-                            limit : parseInt(req.query.limit) ? 5 : 0,
-                            skip: parseInt(req.query.skip) ? 5 : 0,
+                            limit : parseInt(req.query.limit) ? parseInt(req.query.limit) : 0,
+                            skip: parseInt(req.query.skip) ? parseInt(req.query.skip) : 0,
                             sort
                         }
                     });

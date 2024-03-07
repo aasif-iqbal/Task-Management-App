@@ -1,4 +1,25 @@
 # Task Management app
+
+***Routes***
+| Request | Method | Request URL |
+|---|---|---|
+| Welcome Page | GET | http://localhost:3000 |
+| Registration | POST | http://localhost:3000/user/registration |
+| Login | POST | http://localhost:3000/user/login |
+| My Profile | GET | http://localhost:3000/users/me |
+| Update Profile | PUT | http://localhost:3000/user/updateProfile/me |
+| Delete Profile | DELETE | http://localhost:3000/user/deleteProfile/me |
+| Logout | POST | http://localhost:3000/user/logout |
+| Logout All | POST | http://localhost:3000/user/logoutAll |
+| Add Task | POST | http://localhost:3000/task/add |
+| Show Task | GET | http://localhost:3000/task/show |
+| Update Task | PATCH | http://localhost:3000/task/update/{task_id} |
+| Delete Task | DELETE | http://localhost:3000/task/delete/{task_id} |
+| SortByTaskStatus| GET | http://localhost:3000/tasks?completed=true |
+| SortByTaskOrder | GET | http://localhost:3000/tasks?createdAt:asc |
+| Pagination | GET | http://localhost:3000/tasks?limit=3&skip=0 |
+
+
 ## User - Section
 ### Welcome page
 **Method:** GET 
@@ -10,7 +31,7 @@ Response - Success: 200 OK
 ```TEXT
 Welcome to my app..
 ``````
-###Registration
+***Registration***
 
 **Method:** POST 
 
@@ -108,7 +129,7 @@ Response body
 
 # 
 
-**Login**
+***Login***
 
 http://localhost:3000/user/login
 
@@ -124,7 +145,7 @@ Response: 400 Bad Request
 {}
 ``````
 #
-*** After login : Copy Current Token ***
+***After login : Copy Current Token***
 
 TO Check OWN Profile
 
@@ -378,8 +399,8 @@ Status 200 Ok
     "__v": 0
 }
 ``````
-
-# Delete
+#
+**Delete**
 
 Request URI - http://localhost:3000/task/delete/65e89fac572e81b694a1c881
 
@@ -391,7 +412,7 @@ Status:  200 - Ok
 }
 ``````
 
-*** Wrong Task Id ***
+***Wrong Task Id***
 
 http://localhost:3000/task/delete/65e89fac572e81b694a1c8811
 
@@ -414,7 +435,7 @@ status: 500 - Internal Server Error
 
 #
 
-*** Correct TaskId But UnAutherised User ***
+***Correct TaskId But UnAutherised User***
 
 Method: DELETE
 
@@ -426,4 +447,155 @@ Status: 401 Unauthorized
 {
     "msg": "Not Allowed - UnAutherised User"
 }
+``````
+# 
+***SortByTaskStatus***
+
+Sort Task By Status - Completed = true | false
+
+Method: GET
+
+Request URI: http://localhost:3000/tasks?completed=true
+
+``````json
+[
+    {
+        "_id": "65e77975a138eff33c58f9ab",
+        "description": "Task-2",
+        "completed": true,
+        "owner": "65e4c5bb4023951cd833e93f",
+        "assignedUser": "65e7752d2a819cf01a438765",
+        "createdAt": "2024-03-05T19:58:45.365Z",
+        "updatedAt": "2024-03-05T19:58:45.365Z",
+        "__v": 0
+    },
+    {
+        "_id": "65e77bad8f4f89b14c939b2a",
+        "description": "Task-4",
+        "completed": true,
+        "owner": "65e4c5bb4023951cd833e93f",
+        "assignedUser": "65e7752d2a819cf01a438765",
+        "createdAt": "2024-03-05T20:08:13.347Z",
+        "updatedAt": "2024-03-05T20:08:13.347Z",
+        "__v": 0
+    },
+    {
+        "_id": "65e77bc0c1416166ccc985a0",
+        "description": "Task-5",
+        "completed": true,
+        "owner": "65e4c5bb4023951cd833e93f",
+        "assignedUser": "65e7752d2a819cf01a438765",
+        "createdAt": "2024-03-05T20:08:32.413Z",
+        "updatedAt": "2024-03-05T20:08:32.413Z",
+        "__v": 0
+    }
+]
+````````
+
+#
+***SortByTaskOrder***
+
+Sort By Asc | Sort By Desc
+
+Method: GET
+
+Request URI: http://localhost:3000/tasks?createdAt:asc
+- OR - 
+Request URI: http://localhost:3000/tasks?createdAt:desc
+
+``````json
+[
+    {
+        "_id": "65e778722b589c5d453c895e",
+        "description": "Task-1",
+        "completed": false,
+        "owner": "65e4c5bb4023951cd833e93f",
+        "assignedUser": "65e7752d2a819cf01a438765",
+        "createdAt": "2024-03-05T19:54:26.909Z",
+        "updatedAt": "2024-03-05T19:54:26.909Z",
+        "__v": 0
+    },
+    {
+        "_id": "65e77975a138eff33c58f9ab",
+        "description": "Task-2",
+        "completed": true,
+        "owner": "65e4c5bb4023951cd833e93f",
+        "assignedUser": "65e7752d2a819cf01a438765",
+        "createdAt": "2024-03-05T19:58:45.365Z",
+        "updatedAt": "2024-03-05T19:58:45.365Z",
+        "__v": 0
+    },
+    {
+        "_id": "65e77a850c600c1f37ed098c",
+        "description": "Task-3",
+        "completed": false,
+        "owner": "65e4c5bb4023951cd833e93f",
+        "assignedUser": "65e7752d2a819cf01a438765",
+        "createdAt": "2024-03-05T20:03:17.306Z",
+        "updatedAt": "2024-03-05T20:03:17.306Z",
+        "__v": 0
+    },
+    {
+        "_id": "65e77bad8f4f89b14c939b2a",
+        "description": "Task-4",
+        "completed": true,
+        "owner": "65e4c5bb4023951cd833e93f",
+        "assignedUser": "65e7752d2a819cf01a438765",
+        "createdAt": "2024-03-05T20:08:13.347Z",
+        "updatedAt": "2024-03-05T20:08:13.347Z",
+        "__v": 0
+    },
+    {
+        "_id": "65e77bc0c1416166ccc985a0",
+        "description": "Task-5",
+        "completed": true,
+        "owner": "65e4c5bb4023951cd833e93f",
+        "assignedUser": "65e7752d2a819cf01a438765",
+        "createdAt": "2024-03-05T20:08:32.413Z",
+        "updatedAt": "2024-03-05T20:08:32.413Z",
+        "__v": 0
+    }
+]
+``````
+#
+
+Pagination
+
+Method: GET
+
+Request URI: http://localhost:3000/tasks?limit=3&skip=0
+
+``````json
+[
+    {
+        "_id": "65e778722b589c5d453c895e",
+        "description": "Task-1",
+        "completed": false,
+        "owner": "65e4c5bb4023951cd833e93f",
+        "assignedUser": "65e7752d2a819cf01a438765",
+        "createdAt": "2024-03-05T19:54:26.909Z",
+        "updatedAt": "2024-03-05T19:54:26.909Z",
+        "__v": 0
+    },
+    {
+        "_id": "65e77975a138eff33c58f9ab",
+        "description": "Task-2",
+        "completed": true,
+        "owner": "65e4c5bb4023951cd833e93f",
+        "assignedUser": "65e7752d2a819cf01a438765",
+        "createdAt": "2024-03-05T19:58:45.365Z",
+        "updatedAt": "2024-03-05T19:58:45.365Z",
+        "__v": 0
+    },
+    {
+        "_id": "65e77a850c600c1f37ed098c",
+        "description": "Task-3",
+        "completed": false,
+        "owner": "65e4c5bb4023951cd833e93f",
+        "assignedUser": "65e7752d2a819cf01a438765",
+        "createdAt": "2024-03-05T20:03:17.306Z",
+        "updatedAt": "2024-03-05T20:03:17.306Z",
+        "__v": 0
+    }
+]
 ``````

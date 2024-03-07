@@ -5,10 +5,13 @@ const { body, validationResult } = require('express-validator');
 
 const auth = require('../middlewares/Auth');
 
-
-router.get('/tasks', auth, taskController.tasks);
-
+/*
+@ SortByTaskCompleted -  {{url}}/tasks?completed=true
+@ Pagination          -  {{url}}/tasks?limit=10&skip=20
+@ Sorting             -  {{url}}/tasks?sortBy=createdAt:desc | createdAt:asc
 //http://localhost:3000/tasks?completed=true
+*/
+router.get('/tasks', auth, taskController.tasks);
 
 router.get('/task/show', auth, taskController.show);
 router.post('/task/add', auth, taskController.add);

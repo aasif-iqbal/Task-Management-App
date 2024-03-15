@@ -611,7 +611,7 @@ Request URI: http://localhost:3000/user/image
 |----- |----|
 | Form - data | _ | 
 | Key         | Value |
-| upload  [file]| Select Files
+| upload   [ type: file ]| Select Files
 
 Response Body:
 
@@ -620,6 +620,23 @@ Status: 201 Created
 ``````text
 Image uploaded succesfully
 ``````
+#
+
+***Send Mail***
+
+Request URI: http://localhost:3000/send-mail
+
+Method: POST
+
+Status: 201 Created
+
+``````json
+{
+    "msg": "Mail has been send.."
+}
+``````
+***Mail (Gmail) send to login user***
+![Mail send to login user](screensort/Email.png)
 
 
 

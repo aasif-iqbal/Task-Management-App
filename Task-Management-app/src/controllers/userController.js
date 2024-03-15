@@ -1,7 +1,8 @@
 const userModel = require("../models/user.model");
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
-// const sharp = require('sharp'); 
+const sharp = require('sharp'); 
+
 // for multer, to shape or customise-image
 const { Error } = require("mongoose");
 
@@ -281,6 +282,9 @@ exports.deleteUser = [
              console.log('user',user);
              if(user){
                 const deletedUser = await userModel.findOneAndDelete(user._id);
+
+                // add Unsupscribe mail to user
+                
                 // await req.user.remove();
                 if (!deletedUser) {
                     return res.status(404).json({ error: 'User not found' });

@@ -18,7 +18,8 @@
 | SortByTaskStatus| GET | http://localhost:3000/tasks?completed=true |
 | SortByTaskOrder | GET | http://localhost:3000/tasks?createdAt:asc |
 | Pagination | GET | http://localhost:3000/tasks?limit=3&skip=0 |
-
+| Pagination | GET | http://localhost:3000/tasks?limit=3&skip=0 |
+| Upload Image | POST | http://localhost:3000/user/image |
 
 ## User - Section
 ### Welcome page
@@ -68,7 +69,7 @@ Response - Errors: 422 Unprocessable Entity
     ]
 }
 ``````
-**Method:**POST
+***Method: POST***
 
 **Request URI:** http://localhost:3000/user/registration
 
@@ -599,3 +600,26 @@ Request URI: http://localhost:3000/tasks?limit=3&skip=0
     }
 ]
 ``````
+#
+***Upload Image***
+
+Method: POST
+
+Request URI: http://localhost:3000/user/image
+
+| Body | _
+|----- |----|
+| Form - data | _ | 
+| Key         | Value |
+| upload  [file]| Select Files
+
+Response Body:
+
+Status: 201 Created
+
+``````text
+Image uploaded succesfully
+``````
+
+
+

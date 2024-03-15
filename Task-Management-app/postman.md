@@ -20,6 +20,9 @@
 | Pagination | GET | http://localhost:3000/tasks?limit=3&skip=0 |
 | Pagination | GET | http://localhost:3000/tasks?limit=3&skip=0 |
 | Upload Image | POST | http://localhost:3000/user/image |
+| Send Mail | POST | http://localhost:3000/send-mail |
+
+
 
 ## User - Section
 ### Welcome page

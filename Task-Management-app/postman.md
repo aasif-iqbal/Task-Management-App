@@ -22,8 +22,6 @@
 | Upload Image | POST | http://localhost:3000/user/image |
 | Send Mail | POST | http://localhost:3000/send-mail |
 
-
-
 ## User - Section
 ### Welcome page
 **Method:** GET 

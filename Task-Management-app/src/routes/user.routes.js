@@ -6,7 +6,6 @@ const auth = require('../middlewares/Auth.js');
 
 const mailService = require("../services/mailServices.js");
 
-// https://medium.com/geekculture/nodejs-image-upload-with-multer-e6cf08c1562f
 //configure multer
 const upload = multer({
     limits: {
@@ -24,8 +23,7 @@ const upload = multer({
 // router.post('/send-mail', mailService.sendMail);
 router.post('/send-mail', mailService.welcomeMail);
 
-router.get('/', function(req, res){
-    // res.send(`<h3>Welcome to my app..</h3>`);
+router.get('/', function(req, res){    
     res.send(`Welcome to my app..`);
 })
 
@@ -55,11 +53,8 @@ In Postman
 [Request] POST - [url] http://localhost:3001/user/image
 select - Body -> form-data
 Key - upload [type:file] | value: select File
-
 */
 
 router.post('/user/image', upload.single('upload'), userController.uploadImage);
 
 module.exports = router;
-
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWU3NDU3N2I1NWQwYzRjZWEyMDUwNzAiLCJpYXQiOjE3MDk2NTU0MTUsImV4cCI6MTcwOTkxNDYxNX0.IJcA4cV8MUFeMlivC1JphdliTFnrKjFhLpEkRvuAAhE

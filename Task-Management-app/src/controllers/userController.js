@@ -28,17 +28,7 @@ exports.registration = [
            const errors = validationResult(req);
            console.log(errors);
 
-        try{
-            /* Accessing Model in Controller */
-            // const user = await userModel.find({});
-
-            // console.log(req.body.name);
-            // console.log(req.body.email);
-            // console.log(req.body.password);
-            
-            //console.log(req.params.name);
-            //console.log(user);
-
+        try{            
             const user_data = new userModel({
                 name : req.body.name,
                 email : req.body.email,
@@ -46,22 +36,17 @@ exports.registration = [
                 age: req.body.age,
                 type : req.body.type
             })
-            
-            console.log(user_data);
-          
-              if(!errors.isEmpty()){
-                    console.log(errors);
+                      
+              if(!errors.isEmpty()){                    
                     res.status(422).json({errors: errors.array()})
-              }else{
-                console.log('step-1');
+              }else{                
                 const userSaved = await user_data.save();   
                 const token = await user_data.generateAuthToken();                
                 
                 res.status(201).json({ userSaved, token });
               }
     
-        }catch(err){
-            console.log(err);
+        }catch(err){            
             res.status(500).json(err.message);
         }
      }
@@ -101,27 +86,14 @@ exports.readUser = [
 @ author: Asif
 */
 
-/*
-type of request:-
-1.query params
-2.params
-3.header
-4.body
-*/
-
 exports.checkPassword =  async (req, res) => {
    
-    try{
-        // const password = '12345';
-        // const id = '65cb61c1cf2d9636bae7823e';
-        console.log('req:', req.query.password);
-        // console.log(req.token);
+    try{        
         const userInfo = await userModel.findById(id);
             
         bcrypt.compare(req.query.password, userInfo.password)
 
-        const result = await bcrypt.compare(req.query.password, userInfo.password);
-        //console.log(result);
+        const result = await bcrypt.compare(req.query.password, userInfo.password);        
 
         if(result){
             res.status(200).json('Password match');
@@ -146,14 +118,7 @@ exports.updateUserInfo = [
     */ 
 
     async (req, res) => {
-        try{
-            // console.log(req.params.id); 65cb61c1cf2d9636bae7823e
-            // const user_id = req.params.id;        
-            // const user  = await userModel.findById(user_id);                        
-            // if(!user){
-            //     return res.send('No User Found');
-            // }
-
+        try{            
             // request by user for update
             const updates = Object.keys(req.body)
             const allowedTyped = ['name', 'email', 'password','age', 'type'];           
@@ -180,15 +145,6 @@ exports.updateUserInfo = [
     }
 ];
 
- /*
-# Testing credentials
-{
-    "name":"john",
-    "email":"john@gmail.com",
-    "password":"12345"
-}
- */
-
 exports.login = [
 
     async (req, res) => {
@@ -209,10 +165,8 @@ exports.login = [
 /*
 - just delete the token that is user by the user to login.
 - if we have multiple token(login with diff devices) then delete only one token that is used by login-User(using js-filter() to achive this)
------------------or---------------
+----------------- or ---------------
 JUST RETURN ALL UN-MATCH TOKEN WITH REQUESTED-AUTH-TOKEN
-
-token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWNkYmEwNWNmNTgyMTBhOTA0NTZmZjUiLCJpYXQiOjE3MDg0OTU0NzcsImV4cCI6MTcwODUzMTQ3N30.cSEK5BOmdWVVwecjasVEVLvDJ4CKd5cZIOBB6rNSxxg',
 */
 
 exports.logout = [
@@ -297,13 +251,6 @@ exports.deleteUser = [
         }  
     }
 ];
-
-/*
-{
-     "email": "mike@gmail.com",
-     "password": "12345"
-}
-*/
 
 exports.uploadImage = [
 

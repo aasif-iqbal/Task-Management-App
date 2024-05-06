@@ -125,27 +125,14 @@ exports.add = [
 ];
 
 /*
-
 - Only description and task-status will update(True/False).
 - Only Admin can update task with task_id
-
-req.body = {
-    "des": "",
-    "completed": true
-}
-
-*/
-
-/*
-Authorize user can update only his/her task
-
+- Authorize user can update only his/her task
 */
 
 exports.update = [
 
-    // validation
-
-    // owner:65dc37876393dc8af1942328
+    // validation    
     async (req, res) => {
         
         const updates = Object.keys(req.body);

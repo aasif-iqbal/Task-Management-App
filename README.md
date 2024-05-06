@@ -636,7 +636,7 @@ Status: 201 Created
 }
 ``````
 ***Mail (Gmail) send to login user***
-![Mail send to login user](screensort/Email.png)
+![Mail send to login user](/Task-Management-app/screensort/Email.png)
 
 
 

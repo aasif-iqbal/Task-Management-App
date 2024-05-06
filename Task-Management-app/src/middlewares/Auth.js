@@ -19,8 +19,7 @@ const auth = async (req, res, next) => {
         req.user = user;
         
         next();    
-    }catch(err){
-        console.log(err);
+    }catch(err){        
         res.status(500).json({messsage:'Please authenticate first'});
         // res.status(401).send({error:'Please authenticate.'});
     }
@@ -28,30 +27,3 @@ const auth = async (req, res, next) => {
 }
 
 module.exports = auth;
-
-/*
-Real-time
-https://stackoverflow.com/questions/40539609/how-to-add-authorization-header-in-postman-environment
-
-
-for testing:
-
-POST: http://localhost:3000/user/login
----------------Hxxxxs --Body-----------------------
---------------------------------------------------- 
-                0-raw                  JSON-v
---------------------------------------------------- 
-            {
-                "email": "john@gmail.com",
-                "password": "12345"
-            }
----------------------------------------------------            
-
----------------Headers ----------------------------
-key: Authorization 
-value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWNkYmEwNWNmNTgyMTBhOTA0NTZmZjUiLCJpYXQiOjE3MDg0MjQwMDUsImV4cCI6MTcwODQ2MDAwNX0.zYACW8YH35NMbYn5jqDf6NjDVAAutPuZ5nEmNYSLPA8
-
-
-token:
-Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWNkYmEwNWNmNTgyMTBhOTA0NTZmZjUiLCJpYXQiOjE3MDg0MjQwMDUsImV4cCI6MTcwODQ2MDAwNX0.zYACW8YH35NMbYn5jqDf6NjDVAAutPuZ5nEmNYSLPA8
-*/

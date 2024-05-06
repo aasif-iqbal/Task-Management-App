@@ -37,19 +37,7 @@ const sendMail = async (req, res) => {
     }).catch( error => {
         return res.status(500).json({error});
     })
-}
-
-   
-    // user: 'johndeo8789@gmail.com',
-    // pass: 'app password',
-    
-    // How to Generate App Password in Gmail/Google Workspace?
-    // https://www.youtube.com/watch?v=lSURGX0JHbA
-
-    // https://myaccount.google.com/apppasswords?utm_source=google-account&utm_medium=myaccountsecurity&utm_campaign=tsv-settings&rapt=AEjHL4NYaQdPzk10TP3cO0lgTVwgX3s4KCWlY7na7UYiYBbJDakAfguf-JrIXI1E0ObBbPfgvKuH_VHgkhN3jpM9XS91uh6wzbHuS2pgtVWlYkeBZ5YhB5I
-
-    // https://www.npmjs.com/package/mailgen
-
+}    
 const welcomeMail = async (req, res) => {
     
     let config = {
